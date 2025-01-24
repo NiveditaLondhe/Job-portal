@@ -59,7 +59,7 @@ export const getUserJobApplications = async (req, res) => {
     try {
         
         const userId = req.auth.userId;
-        const application = await JobApplication.find({userId})
+        const applications = await JobApplication.find({userId})
         .populate('companyId', 'name emai image')
         .populate('jobId', 'title description location category level salary')
         .exec();
@@ -68,7 +68,7 @@ export const getUserJobApplications = async (req, res) => {
             return res.json({success: false, message: "No  job Applications Found for this user"})
         }
 
-        return res.json({success: true, application})
+        return res.json({success: true, applications})
 
     } catch (error) {
         res.json({success: false, message: error.message})

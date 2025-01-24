@@ -23,11 +23,12 @@ const Applications = () => {
       formData.append('resume', resume);
 
       const token = await getToken();
-      const { data } = await axios.post(
+      const { data } = await axios.put(
         backendUrl + '/api/users/update-resume',
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      // console.log(data);
 
       if (data.success) {
         toast.success(data.message);
@@ -106,14 +107,14 @@ const Applications = () => {
             </tr>
           </thead>
           <tbody>
-            {jobsApplied.map((job, index) => (
+            {userApplications.map((job, index) => (
               <tr key={index}>
                 <td className="py-3 px-4 flex items-center gap-2 border-b">
-                  <img className="w-8 h-8" src={job.logo} alt={`${job.company} Logo`} />
-                  {job.company}
+                  <img className="w-8 h-8" src={job.companyId.image} alt={`${job.companyId.name} Logo`} />
+                  {job.companyId.name}
                 </td>
-                <td className="py-2 px-4 border-b">{job.title}</td>
-                <td className="py-2 px-4 border-b max-sm:hidden">{job.location}</td>
+                <td className="py-2 px-4 border-b">{job.jobId.title}</td>
+                <td className="py-2 px-4 border-b max-sm:hidden">{job.jobId.location}</td>
                 <td className="py-2 px-4 border-b max-sm:hidden">
                   {moment(job.date).format('ll')}
                 </td>
