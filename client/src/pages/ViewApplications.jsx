@@ -91,7 +91,7 @@ const ViewApplications = () => {
                   <a href={applicant.userId.resume} target='blank'
                     className='bg-blue-50 text-blue-400 px-3 py-1 rounded inline-flex gap-2 items-center'
                   >
-                    Resume <img src={assets.resume_download_icon} alt="" />
+                    Resume <img src={assets.resume_download_icon} alt="xyz" />
                   </a>
                 </td>
                 <td className='py-2 px-4 border-b relative'>
